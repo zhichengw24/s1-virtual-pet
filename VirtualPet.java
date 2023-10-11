@@ -8,6 +8,8 @@ public class VirtualPet {
     VirtualPetFace face;
     int hunger = 0;   // how hungry the pet is.
     int tiredness = 0;
+    int mood = 0;
+    int health = 100;
     
     // constructor
     public VirtualPet() {
@@ -37,7 +39,6 @@ public class VirtualPet {
         tiredness = tiredness + 1;
         if (tiredness > 15) {
             face.setMessage("I'm... too... sleepy...");
-            feed();
         }
         else if (hunger > 12) {
             face.setMessage("urk, I'm too hungry!");
@@ -58,7 +59,42 @@ public class VirtualPet {
             face.setMessage("zzzzzzzzzz");
             face.setImage("asleep");
         }
+    
     }
 
+    public void pet() {
+        mood = mood + 1;
+        if (mood >= 0) {
+            face.setImage("love");
+        } else {
+            face.setImage("verysad");
+        }
+    }
 
-} // end Virtual Pet
+    public void forceFeedGasoline() {
+        if (health > 50) {
+            mood = mood - 100;
+            hunger = 0;
+            health = health - 50;
+            face.setMessage("What is wrong with you");
+            face.setImage("sick");
+        } else {
+            face.setImage("dead");
+            health = 0;
+        }
+    }
+
+    public void dropInAcid() {
+        face.setMessage("- - - - ----------");
+        face.setImage("skeleton");
+    }
+
+    public void forceFeedCovid() {
+        tiredness = tiredness + 19;
+        face.setMessage("I feel sick");
+        face.setImage("verysick");
+    }
+}
+
+
+ // end Virtual Pet
