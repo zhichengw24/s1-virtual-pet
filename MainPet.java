@@ -24,6 +24,10 @@ class MainPet {
         p.dropInAcid();
       if(s.equals("forceFeedCovid"))
         p.forceFeedCovid();
+      if(s.equals("coffinDance"))
+        p.coffinDance();
+      if(s.equals("guessNumber1to10"))
+        p.guessNumber1to10();
     }
   }
     

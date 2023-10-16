@@ -3,6 +3,10 @@
  * @author Ratchet
  * @author ?
  */
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 public class VirtualPet {
     
     VirtualPetFace face;
@@ -53,8 +57,14 @@ public class VirtualPet {
         hunger = hunger + 1;
         tiredness = 10;
         if (tiredness > 12) {
-            face.setMessage("awww, I got too hungry!");
-            face.setImage("dead");
+            face.setMessage("zzzzzzzzzz");
+            face.setImage("asleep");
+            try {
+                Thread.sleep(1000); //milliseconds
+            } catch(Exception e){
+                face.setMessage("awww, I got too hungry!");
+                face.setImage("dead");
+            }
         } else {
             face.setMessage("zzzzzzzzzz");
             face.setImage("asleep");
@@ -72,17 +82,25 @@ public class VirtualPet {
     }
 
     public void forceFeedGasoline() {
-        if (health > 50) {
+        if (health > 60) {
             mood = mood - 100;
             hunger = 0;
-            health = health - 50;
+            health = health - 40;
             face.setMessage("What is wrong with you");
             face.setImage("sick");
-        } else {
+        } else if (health > 40) {
+            mood = mood - 100;
+            hunger = 0;
+            health = health - 40;
             face.setImage("dead");
             health = 0;
+        } else {
+            face.setImage("maxresdefault");
         }
     }
+
+
+
 
     public void dropInAcid() {
         face.setMessage("- - - - ----------");
@@ -94,7 +112,33 @@ public class VirtualPet {
         face.setMessage("I feel sick");
         face.setImage("verysick");
     }
-}
+
+
+    public void coffinDance() {
+        face.setImage("maxresdefault");
+    }
+
+    public void guessNumber1to10() {
+        int value = (int)(Math.random()*11);
+        face.setImage("happy");
+        face.setMessage("I am guessing " + value);
+        String ans = (String)JOptionPane.showInputDialog(
+                    new JFrame(),
+                    "Am I correct?",
+                    "Ask",
+                    JOptionPane.PLAIN_MESSAGE);
+        System.out.println(ans);
+        if(ans.equals("yes"))
+            face.setImage("ecstatic");
+        if(ans.equals("yes"))
+            face.setMessage("Yay");
+        if(ans.equals("no"))
+            face.setImage("sad");
+        if(ans.equals("no"))
+            face.setMessage("Damn it");
+        }
+    }
+
 
 
  // end Virtual Pet
